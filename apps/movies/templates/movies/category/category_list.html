@@ -20,6 +20,7 @@
                         <th>Edad minima</th>
                         <th>Creacion</th>
                         <th>Ultima actualizacion</th>
+                        <th>Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,12 @@
                             <td>{{ category_item.minimum_age }}</td>
                             <td>{{ category_item.created | timesince }}</td>
                             <td>{{ category_item.updated | timesince }}</td>
+                            <td width="20%">
+                                <a class="btn-floating btn-small waves-effect waves-light red"
+                                    href="{% url 'movies:category-edit' pk=category_item.pk %}"><i class="material-icons">edit</i></a>
+                                <a class="btn-floating btn-small waves-effect waves-light blue"
+                                    href="{% url 'movies:category-delete' pk=category_item.pk %}"><i class="material-icons">delete</i></a>
+                            </td>     
                         </tr>
                     {% endfor %}
                     </tbody>

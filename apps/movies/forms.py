@@ -1,5 +1,5 @@
 from django import forms
-from .models import Movies
+from .models import Movies, Categories
 
 
 class MoviesForm(forms.ModelForm):
@@ -7,6 +7,10 @@ class MoviesForm(forms.ModelForm):
         model = Movies
         fields = '__all__'
 
+class CategoriesForm(forms.ModelForm):
+    class Meta:
+        model = Categories
+        fields = '__all__'
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='Usuario')

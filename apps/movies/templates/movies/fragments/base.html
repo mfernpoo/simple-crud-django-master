@@ -9,12 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
-    <style>
-        .errorlist {
-            color: #F44336 !important;
-        }
-    </style>
 </head>
 <body>
 <nav class="light-blue lighten-1" role="navigation">
@@ -48,16 +42,18 @@
 
 <script>
     $(document).ready(function () {
+        // Initialize side navigation
+        $(".button-collapse").sideNav();
         $('select').material_select();
 
-         $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
+        $('.datepicker').pickadate({
+            selectMonths: true,
+            selectYears: 15,
             today: 'Today',
             clear: 'Clear',
             close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
-          });
+            closeOnSelect: false
+        });
     });
 </script>
 

@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .models import Movies, Categories
-from .forms import MoviesForm, LoginForm
+from .forms import MoviesForm, LoginForm, CategoriesForm
 
 
 # Create your views here.
@@ -123,5 +123,25 @@ def category_create(request, **kwargs):
         # Guardamos el objeto
         form.save()
         # redirigir a una nueva URL
+        return redirect('movies:category-list')
+    return render(request, 'movies/form.html', {'form': form})
+
+@login_required
+def category_delete(request, **kwargs):
+    category = Categories.objects.get(pk=kwargs.get('pk'))
+    category.delete()
+    return redirect('movies:category-list')
+
+@login_required
+def category_update(request, **kwargs):
+    # recuperamos el objeto a actualizar
+    category = Categories.objects.get(pk=kwargs.get('pk'))
+    # inicializamos el formulario con el objeto recuperado
+    form = CategoriesForm(
+        request.POST or None,
+        instance=category
+    )
+    if request.POST and form.is_valid():
+        form.save()
         return redirect('movies:category-list')
     return render(request, 'movies/form.html', {'form': form})
